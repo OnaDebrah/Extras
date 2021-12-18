@@ -18,6 +18,16 @@ trait Fixtures extends LazyLogging {
     "sc2-himem-2","sc2-himem-4","sc2-himem-8","sc2-himem-16","sc2-himem-32","sc2-hicpu-2","sc2-hicpu-4","sc2-hicpu-8","sc2-hicpu-16","sc2-hicpu-32")
 
 
+  def writeFile(resourcePath: String, filename: String, prices: Prices): Unit = {
+    val file = new File(s"$resourcePath/$filename.txt")
+    val bw = new BufferedWriter(new FileWriter(file, true))
+    bw.write(s"${prices.kind}, ${prices.price}, ${prices.timestamp}\n")
+    bw.close()
+  }
 
+  def prices(jsonStr: String): Option[Prices] = decode[Prices](jsonStr) match {
+    case Right(price) => Some(price)
+    case _ => None
+  }
 
 }
