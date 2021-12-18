@@ -15,7 +15,7 @@ object Config {
   private val fileName = "prices"
   private val resourcePath = "src/main/resources"
   private val quota = 1000
-  private val frequency = 5000
+  private val frequency = 3000
 
   val configs: Config = createConfig(token, url, resourcePath, fileName, quota, frequency)
 
